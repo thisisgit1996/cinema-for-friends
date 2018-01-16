@@ -9,10 +9,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import org.apache.log4j.Logger;
+
 import com.qa.cinema.business.MovieService;
 
 @Path("/cinema")
 public class MovieEndpoint {
+	
+	private static Logger logger = Logger.getLogger("leoLog");
 
 	@Inject
 	private MovieService service;
@@ -21,6 +25,7 @@ public class MovieEndpoint {
 	@GET
 	@Produces({ "application/json" })
 	public String getAllMovies() {
+		logger.info("Returning all movies. Get request");
 		return service.getAllMovies();
 	}
 
@@ -28,6 +33,7 @@ public class MovieEndpoint {
 	@POST
 	@Produces({ "application/json" })
 	public String addMovie(String movie) {
+		logger.info("Adding movie. Post request.");
 		return service.createMovie(movie);
 	}
 
@@ -35,6 +41,7 @@ public class MovieEndpoint {
 	@PUT
 	@Produces({ "application/json" })
 	public String updateMovie(@PathParam("id") Long id, String movie) {
+		logger.info("Updating movie. Put request.");
 		return service.updateMovie(id, movie);
 	}
 
@@ -42,6 +49,7 @@ public class MovieEndpoint {
 	@DELETE
 	@Produces({ "application/json" })
 	public String deleteMovie(@PathParam("id") Long id) {
+		logger.info("Deleting movie. Delete request");
 		return service.deleteMovie(id);
 
 	}

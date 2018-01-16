@@ -5,6 +5,7 @@ import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 import java.util.Collection;
 
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,6 +15,7 @@ import javax.transaction.Transactional;
 import com.qa.cinema.persistence.Movie;
 import com.qa.cinema.util.JSONUtil;
 
+@Default
 @Transactional(SUPPORTS)
 public class MovieServiceDBImpl implements MovieService {
 

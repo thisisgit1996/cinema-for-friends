@@ -27,5 +27,16 @@ public class MovieEndPointTest {
 		Mockito.verify(movieService).createMovie("test");
 		Mockito.verify(movieService, Mockito.never()).deleteMovie(1L);
 	}
+	
+	@Test
+	public void testUpdateMovie() {
+		endPoint.setService(movieService);
+		Mockito.when(movieService.createMovie("test")).thenReturn("test output");
+		Assert.assertEquals("test output", endPoint.addMovie("test"));
+		Mockito.when(movieService.updateMovie(1L, "test")).thenReturn("test output");
+		Assert.assertEquals("test output", endPoint.updateMovie(1L, "test"));
+		Mockito.verify(movieService).updateMovie(1L, "test");
+		Mockito.verify(movieService, Mockito.never()).deleteMovie(1L);
+	}
 
 }
